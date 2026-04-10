@@ -10,6 +10,7 @@ dnf5 install -y \
     flatpak-builder \
     git-subtree \
     nicstat \
+    niri \
     numactl \
     podman-machine \
     podman-tui \
@@ -99,6 +100,17 @@ dnf5 install -y --enable-repo="docker-ce-stable" "${docker_pkgs[@]}" || {
         dnf5 install -y --enablerepo="docker-ce-test" "${docker_pkgs[@]}"
     fi
 }
+
+# DankMaterialShell — desktop shell for niri and other Wayland compositors.
+# Requires two COPRs: avengemedia/danklinux (quickshell + deps) and avengemedia/dms (dms package).
+dnf5 copr enable -y avengemedia/danklinux
+dnf5 copr enable -y avengemedia/dms
+dnf5 config-manager setopt "copr:copr.fedorainfracloud.org:avengemedia:danklinux.enabled=0"
+dnf5 config-manager setopt "copr:copr.fedorainfracloud.org:avengemedia:dms.enabled=0"
+dnf5 install -y \
+    --enable-repo="copr:copr.fedorainfracloud.org:avengemedia:danklinux" \
+    --enable-repo="copr:copr.fedorainfracloud.org:avengemedia:dms" \
+    dms
 
 # Load iptable_nat module for docker-in-docker.
 # See:
