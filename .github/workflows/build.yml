@@ -248,7 +248,7 @@ jobs:
 
       - name: Sign image with cosign (keyless)
         run: |
-          cosign sign ghcr.io/${{ github.repository }}:latest
+          cosign sign ghcr.io/aiodillen/bazzite-dx-gnome:latest
       
 
   check:
