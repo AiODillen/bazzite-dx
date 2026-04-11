@@ -5,8 +5,6 @@ on:
     # Daily build at 02:00 UTC — skipped automatically if main has not
     # changed in the last 24 hours (see the check_changes job below).
     - cron: '0 2 * * *'
-  merge_group:
-  pull_request:
   workflow_dispatch:
 
 env:
