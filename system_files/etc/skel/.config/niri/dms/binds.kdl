@@ -220,10 +220,10 @@ binds {
 
     // === Virtual Terminal Switching ===
     // Escape hatch if niri or DMS become unresponsive.
-    Ctrl+Alt+F1 { switch-to-vt 1; }
-    Ctrl+Alt+F2 { switch-to-vt 2; }
-    Ctrl+Alt+F3 { switch-to-vt 3; }
-    Ctrl+Alt+F4 { switch-to-vt 4; }
-    Ctrl+Alt+F5 { switch-to-vt 5; }
-    Ctrl+Alt+F6 { switch-to-vt 6; }
+    Ctrl+Alt+F1 { spawn "chvt" "1"; }
+    Ctrl+Alt+F2 { spawn "chvt" "2"; }
+    Ctrl+Alt+F3 { spawn "chvt" "3"; }
+    Ctrl+Alt+F4 { spawn "chvt" "4"; }
+    Ctrl+Alt+F5 { spawn "chvt" "5"; }
+    Ctrl+Alt+F6 { spawn "chvt" "6"; }
 }
