@@ -11,8 +11,10 @@ environment {
     QT_QPA_PLATFORMTHEME "gtk3"
 }
 
-// Start DankMaterialShell on login.
-spawn-at-startup "dms" "run"
+// DankMaterialShell is started via systemd:
+//   /usr/lib/systemd/user/niri.service.wants/dms.service -> ../dms.service
+// This ensures DMS starts/stops with the niri session and dms ipc works reliably.
+// Do NOT add spawn-at-startup for dms here — that would start a second instance.
 
 // DMS manages these config fragments; they are auto-populated on first run.
 // The placeholder files must exist before niri starts — see the user-setup hook.
