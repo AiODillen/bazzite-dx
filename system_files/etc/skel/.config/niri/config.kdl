@@ -44,8 +44,7 @@ window-rule {
 // DMS-specific binds (spotlight, IPC actions, etc.) are injected via
 // dms/binds.kdl above after DMS first runs.
 binds {
-    // Terminal — konsole on KDE, gnome-terminal on GNOME
-    Mod+Return { spawn "bash" "-c" "konsole 2>/dev/null || gnome-terminal 2>/dev/null || flatpak run app.drey.Warp"; }
+    Mod+Return { spawn "ptyxis"; }
 
     Mod+Q { close-window; }
 
