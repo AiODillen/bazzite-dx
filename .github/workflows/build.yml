@@ -1,9 +1,13 @@
 ---
 name: Build Bazzite DX
 on:
-  repository_dispatch:
-    types:
-      - build
+  push:
+    branches:
+      - main
+  schedule:
+    # Daily build at 02:00 UTC — skipped automatically if main has not
+    # changed in the last 24 hours (see the check_changes job below).
+    - cron: '0 2 * * *'
   merge_group:
   pull_request:
   workflow_dispatch:
@@ -25,8 +29,35 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  check_changes:
+    name: Check for recent changes
+    runs-on: ubuntu-latest
+    outputs:
+      should_build: ${{ steps.gate.outputs.should_build }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine whether to build
+        id: gate
+        run: |
+          if [[ "${{ github.event_name }}" != "schedule" ]]; then
+            # Push, pull_request, workflow_dispatch, merge_group — always build.
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+          elif git log --oneline --since="24 hours ago" origin/main | grep -q .; then
+            echo "Main has commits in the last 24 hours — proceeding with scheduled build."
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No commits to main in the last 24 hours — skipping scheduled build."
+            echo "should_build=false" >> "$GITHUB_OUTPUT"
+          fi
+
   build_push:
     name: Build and push image
+    needs: check_changes
+    if: needs.check_changes.outputs.should_build == 'true'
     runs-on: ubuntu-24.04
 
     strategy:
