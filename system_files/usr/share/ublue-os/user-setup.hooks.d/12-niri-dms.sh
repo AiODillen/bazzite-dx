@@ -6,11 +6,12 @@ source /usr/lib/ublue/setup-services/libsetup.sh
 # /etc/skel/.config/niri/ changes in the image.
 # The hook re-runs on the next login after a version bump and
 # overwrites local copies with the updated image-managed files.
-version-script niri-dms user 3 || exit 1
+version-script niri-dms user 4 || exit 1
 
 set -euo pipefail
 
 mkdir -p "${HOME}/.config/niri/dms"
+mkdir -p "${HOME}/.config/environment.d"
 
 # Always overwrite image-managed configs so image changes take precedence.
 # Do not edit these files directly — they will be overwritten on the next
@@ -20,6 +21,7 @@ cp /etc/skel/.config/niri/config.kdl     "${HOME}/.config/niri/config.kdl"
 cp /etc/skel/.config/niri/dms/layout.kdl "${HOME}/.config/niri/dms/layout.kdl"
 cp /etc/skel/.config/niri/dms/alttab.kdl "${HOME}/.config/niri/dms/alttab.kdl"
 cp /etc/skel/.config/niri/dms/binds.kdl  "${HOME}/.config/niri/dms/binds.kdl"
+cp /etc/skel/.config/environment.d/50-dms.conf "${HOME}/.config/environment.d/50-dms.conf"
 
 # colors.kdl is generated dynamically by DMS from the current wallpaper;
 # never overwrite it — only seed an empty placeholder on first run.

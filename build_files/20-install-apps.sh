@@ -6,8 +6,10 @@ dnf5 install -y \
     bcc \
     bpftop \
     bpftrace \
+    cava \
     ccache \
     flatpak-builder \
+    foot \
     git-subtree \
     nicstat \
     niri \
@@ -111,7 +113,8 @@ dnf5 config-manager setopt "copr:copr.fedorainfracloud.org:avengemedia:dms.enabl
 dnf5 install -y \
     --enable-repo="copr:copr.fedorainfracloud.org:avengemedia:danklinux" \
     --enable-repo="copr:copr.fedorainfracloud.org:avengemedia:dms" \
-    dms
+    dms \
+    matugen
 
 # Load iptable_nat module for docker-in-docker.
 # See:
