@@ -23,3 +23,7 @@ fi
 
 # Ensure screenshot directory exists
 mkdir -p "${HOME}/Pictures/Screenshots"
+
+# Apply dark colour scheme so GTK apps respect dark mode before matugen
+# has run once and generated a Material Design palette.
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'

@@ -21,6 +21,7 @@ dnf5 install -y \
     tiptop \
     usbmuxd \
     waypipe \
+    wl-clipboard \
     zsh
 
 dnf5 remove -y \

@@ -9,6 +9,9 @@ environment {
     QT_QPA_PLATFORM "wayland"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     QT_QPA_PLATFORMTHEME "gtk3"
+    // Cursor theme for XWayland and apps that read these directly
+    XCURSOR_THEME "Adwaita"
+    XCURSOR_SIZE "24"
 }
 
 // DankMaterialShell is started via systemd:
@@ -23,6 +26,9 @@ include "dms/layout.kdl"
 include "dms/alttab.kdl"
 include "dms/binds.kdl"
 
+// Note: window-rule (corner radius, borders) is owned by dms/layout.kdl above.
+// Do not add a window-rule here — it would conflict with layout.kdl on reload.
+
 input {
     keyboard {
         xkb { }
@@ -34,21 +40,37 @@ input {
     }
 }
 
-// Round window corners to match the DMS Material Design theme.
-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
+cursor {
+    // Adwaita is the GNOME default cursor theme, available on this image.
+    // Change xcursor-theme if you install a different cursor theme.
+    xcursor-theme "Adwaita"
+    xcursor-size 24
 }
 
+// Output configuration — uncomment and adjust for your monitor(s).
+// Run `niri msg outputs` to get your output names.
+// outputs {
+//     "eDP-1" {
+//         scale 2.0          // HiDPI scaling factor
+//         refresh-rate 60    // Refresh rate in Hz
+//         // position (0, 0)
+//     }
+//     "HDMI-A-1" {
+//         scale 1.0
+//         refresh-rate 144
+//         // position (2560, 0)
+//     }
+// }
+
 // Binds not covered by dms/binds.kdl.
-// Everything else (window management, workspaces, DMS IPC, media keys)
+// Everything else (window management, workspaces, DMS IPC, media keys, VT switch)
 // is defined in dms/binds.kdl above.
 binds {
     // Additional terminal alias (Mod+T is in dms/binds.kdl)
     Mod+Return { spawn "ptyxis"; }
 
-    // File manager — Dolphin on KDE variant, Nautilus on GNOME variant
-    Mod+E { spawn "bash" "-c" "dolphin 2>/dev/null || nautilus"; }
+    // File manager
+    Mod+E { spawn "nautilus"; }
 }
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"

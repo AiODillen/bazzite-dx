@@ -217,4 +217,13 @@ binds {
     // === System Controls ===
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+P { power-off-monitors; }
+
+    // === Virtual Terminal Switching ===
+    // Escape hatch if niri or DMS become unresponsive.
+    Ctrl+Alt+F1 { switch-to-vt 1; }
+    Ctrl+Alt+F2 { switch-to-vt 2; }
+    Ctrl+Alt+F3 { switch-to-vt 3; }
+    Ctrl+Alt+F4 { switch-to-vt 4; }
+    Ctrl+Alt+F5 { switch-to-vt 5; }
+    Ctrl+Alt+F6 { switch-to-vt 6; }
 }
