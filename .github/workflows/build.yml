@@ -5,6 +5,7 @@ on:
     # Daily build at 02:00 UTC — skipped automatically if main has not
     # changed in the last 24 hours (see the check_changes job below).
     - cron: '0 2 * * *'
+  workflow_dispatch:
 
 env:
   IMAGE_NAME: "${{ github.event.repository.name }}" # the name of the image produced by this build, matches repo names
