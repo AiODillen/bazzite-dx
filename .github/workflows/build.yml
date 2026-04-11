@@ -246,15 +246,14 @@ jobs:
         uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # v3.9.1
         if: github.event_name != 'pull_request'
 
-      - name: Get image digest
+      - name: Read digest
         id: digest
         run: |
-          DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/aiodillen/bazzite-dx-gnome:latest)
-          echo "digest=$DIGEST" >> $GITHUB_OUTPUT
+          DIGEST=$(cat bazzite-dx-gnome-latest_digest.txt)
+          echo "digest=ghcr.io/aiodillen/bazzite-dx-gnome@$DIGEST" >> $GITHUB_OUTPUT
       
       - name: Sign image (keyless)
         env:
-          COSIGN_EXPERIMENTAL: "true"
           COSIGN_YES: "true"
         run: |
           cosign sign ${{ steps.digest.outputs.digest }}
