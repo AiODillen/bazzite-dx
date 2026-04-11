@@ -40,42 +40,15 @@ window-rule {
     clip-to-geometry true
 }
 
-// Core niri window-management keybinds.
-// DMS-specific binds (spotlight, IPC actions, etc.) are injected via
-// dms/binds.kdl above after DMS first runs.
+// Binds not covered by dms/binds.kdl.
+// Everything else (window management, workspaces, DMS IPC, media keys)
+// is defined in dms/binds.kdl above.
 binds {
+    // Additional terminal alias (Mod+T is in dms/binds.kdl)
     Mod+Return { spawn "ptyxis"; }
 
-    Mod+Q { close-window; }
-
-    Mod+Left  { focus-column-left; }
-    Mod+Down  { focus-window-down; }
-    Mod+Up    { focus-window-up; }
-    Mod+Right { focus-column-right; }
-
-    Mod+Shift+Left  { move-column-left; }
-    Mod+Shift+Down  { move-window-down; }
-    Mod+Shift+Up    { move-window-up; }
-    Mod+Shift+Right { move-column-right; }
-
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
-    Mod+3 { focus-workspace 3; }
-    Mod+4 { focus-workspace 4; }
-    Mod+5 { focus-workspace 5; }
-    Mod+Shift+1 { move-window-to-workspace 1; }
-    Mod+Shift+2 { move-window-to-workspace 2; }
-    Mod+Shift+3 { move-window-to-workspace 3; }
-    Mod+Shift+4 { move-window-to-workspace 4; }
-    Mod+Shift+5 { move-window-to-workspace 5; }
-
-    Mod+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
-
-    Print { screenshot; }
-
-    // Emergency exit — use if DMS lock screen is unavailable
-    Mod+Shift+E { quit; }
+    // File manager — Dolphin on KDE variant, Nautilus on GNOME variant
+    Mod+E { spawn "bash" "-c" "dolphin 2>/dev/null || nautilus"; }
 }
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
