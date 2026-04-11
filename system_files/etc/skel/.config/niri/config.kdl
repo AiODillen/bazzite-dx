@@ -31,7 +31,9 @@ include "dms/binds.kdl"
 
 input {
     keyboard {
-        xkb { }
+        xkb {
+            layout "de"
+        }
     }
 
     touchpad {
@@ -74,3 +76,7 @@ binds {
 }
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// Personal overrides — this file is NOT overwritten by image updates.
+// Add custom output config, extra keybinds, window rules, etc. here.
+// include "custom.kdl"

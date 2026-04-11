@@ -2,26 +2,31 @@
 
 source /usr/lib/ublue/setup-services/libsetup.sh
 
-version-script niri-dms user 1 || exit 1
+# Bump this version number whenever any file under
+# /etc/skel/.config/niri/ changes in the image.
+# The hook re-runs on the next login after a version bump and
+# overwrites local copies with the updated image-managed files.
+version-script niri-dms user 3 || exit 1
 
 set -euo pipefail
 
-# Ensure the DMS config fragment directory exists.
-# niri will fail to start if any include target is missing, so these
-# placeholder files must be present before the user's first niri session.
-# DMS will overwrite them with real content on its first run.
 mkdir -p "${HOME}/.config/niri/dms"
-for f in colors layout alttab binds; do
-    [[ -f "${HOME}/.config/niri/dms/${f}.kdl" ]] || touch "${HOME}/.config/niri/dms/${f}.kdl"
-done
 
-# Seed niri config for users whose home predates this image version.
-if [[ ! -f "${HOME}/.config/niri/config.kdl" ]]; then
-    mkdir -p "${HOME}/.config/niri"
-    cp /etc/skel/.config/niri/config.kdl "${HOME}/.config/niri/config.kdl"
-fi
+# Always overwrite image-managed configs so image changes take precedence.
+# Do not edit these files directly — they will be overwritten on the next
+# image update. Put personal overrides in ~/.config/niri/custom.kdl instead
+# (config.kdl already has an include for it at the bottom).
+cp /etc/skel/.config/niri/config.kdl     "${HOME}/.config/niri/config.kdl"
+cp /etc/skel/.config/niri/dms/layout.kdl "${HOME}/.config/niri/dms/layout.kdl"
+cp /etc/skel/.config/niri/dms/alttab.kdl "${HOME}/.config/niri/dms/alttab.kdl"
+cp /etc/skel/.config/niri/dms/binds.kdl  "${HOME}/.config/niri/dms/binds.kdl"
 
-# Ensure screenshot directory exists
+# colors.kdl is generated dynamically by DMS from the current wallpaper;
+# never overwrite it — only seed an empty placeholder on first run.
+[[ -f "${HOME}/.config/niri/dms/colors.kdl" ]] || \
+    touch "${HOME}/.config/niri/dms/colors.kdl"
+
+# Ensure screenshot directory exists.
 mkdir -p "${HOME}/Pictures/Screenshots"
 
 # Apply dark colour scheme so GTK apps respect dark mode before matugen
