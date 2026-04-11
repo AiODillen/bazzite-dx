@@ -31,7 +31,9 @@ include "dms/binds.kdl"
 
 input {
     keyboard {
-        xkb { }
+        xkb {
+            layout "de"
+        }
     }
 
     touchpad {

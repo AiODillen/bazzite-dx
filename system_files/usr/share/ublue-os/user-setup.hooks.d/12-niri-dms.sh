@@ -6,7 +6,7 @@ source /usr/lib/ublue/setup-services/libsetup.sh
 # /etc/skel/.config/niri/ changes in the image.
 # The hook re-runs on the next login after a version bump and
 # overwrites local copies with the updated image-managed files.
-version-script niri-dms user 2 || exit 1
+version-script niri-dms user 3 || exit 1
 
 set -euo pipefail
 
