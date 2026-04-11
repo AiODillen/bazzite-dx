@@ -1,9 +1,6 @@
 ---
 name: Build Bazzite DX
 on:
-  push:
-    branches:
-      - main
   schedule:
     # Daily build at 02:00 UTC — skipped automatically if main has not
     # changed in the last 24 hours (see the check_changes job below).
