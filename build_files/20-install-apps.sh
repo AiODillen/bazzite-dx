@@ -8,7 +8,6 @@ dnf5 install -y \
     bpftrace \
     cava \
     ccache \
-    danksearch \
     flatpak-builder \
     foot \
     git-subtree \
@@ -115,6 +114,7 @@ dnf5 config-manager setopt "copr:copr.fedorainfracloud.org:avengemedia:dms.enabl
 dnf5 install -y \
     --enable-repo="copr:copr.fedorainfracloud.org:avengemedia:danklinux" \
     --enable-repo="copr:copr.fedorainfracloud.org:avengemedia:dms" \
+    danksearch \
     dms \
     matugen
 
