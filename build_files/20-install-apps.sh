@@ -9,7 +9,6 @@ dnf5 install -y \
     cava \
     ccache \
     flatpak-builder \
-    foot \
     git-subtree \
     khal \
     nicstat \
@@ -20,7 +19,6 @@ dnf5 install -y \
     python3-ramalama \
     restic \
     rclone \
-    sysprof \
     tiptop \
     usbmuxd \
     waypipe \
