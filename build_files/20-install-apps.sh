@@ -126,6 +126,11 @@ dnf5 install -y \
     coolercontrold \
     coolercontrol
 
+# BetterDiscord — CLI tool to patch Flatpak/native Discord with BetterDiscord.
+curl -fsSL "https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl" \
+    -o /usr/bin/betterdiscordctl
+chmod +x /usr/bin/betterdiscordctl
+
 # Load iptable_nat module for docker-in-docker.
 # See:
 #   - https://github.com/ublue-os/bluefin/issues/2365
