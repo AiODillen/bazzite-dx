@@ -8,9 +8,11 @@ dnf5 install -y \
     bpftrace \
     cava \
     ccache \
+    danksearch \
     flatpak-builder \
     foot \
     git-subtree \
+    khal \
     nicstat \
     niri \
     numactl \
@@ -115,6 +117,14 @@ dnf5 install -y \
     --enable-repo="copr:copr.fedorainfracloud.org:avengemedia:dms" \
     dms \
     matugen
+
+# CoolerControl — fan/pump/LED control with hardware monitoring.
+dnf5 copr enable -y codifryed/CoolerControl
+dnf5 config-manager setopt "copr:copr.fedorainfracloud.org:codifryed:CoolerControl.enabled=0"
+dnf5 install -y \
+    --enable-repo="copr:copr.fedorainfracloud.org:codifryed:CoolerControl" \
+    coolercontrold \
+    coolercontrol
 
 # Load iptable_nat module for docker-in-docker.
 # See:

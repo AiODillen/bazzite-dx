@@ -1,7 +1,9 @@
 app.drey.Warp
+com.discordapp.Discord
 com.github.k4zmu2a.spacecadetpinball
 com.github.Matoking.protontricks
 com.github.PintaProject.Pinta
+com.protonvpn.www
 com.github.tchx84.Flatseal
 com.github.wwmm.easyeffects
 com.jeffser.Alpaca
@@ -31,6 +33,7 @@ org.qbittorrent.qBittorrent
 org.signal.Signal
 org.telegram.desktop
 org.torproject.torbrowser-launcher
+page.codeberg.JakobDev.jdDesktopEntryEdit
 runtime/com.obsproject.Studio.Plugin.Gstreamer
 runtime/com.obsproject.Studio.Plugin.GStreamerVaapi
 runtime/com.obsproject.Studio.Plugin.OBSVkCapture

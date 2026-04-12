@@ -7,3 +7,4 @@ systemctl enable ublue-system-setup.service
 systemctl --global enable ublue-user-setup.service
 systemctl --global enable dms.service
 systemctl enable bazzite-dx-groups.service
+systemctl enable coolercontrold.service

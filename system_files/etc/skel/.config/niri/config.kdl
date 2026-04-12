@@ -25,6 +25,8 @@ include "dms/colors.kdl"
 include "dms/layout.kdl"
 include "dms/alttab.kdl"
 include "dms/binds.kdl"
+include "dms/windowrules.kdl"
+include "dms/cursor.kdl"
 
 // Note: window-rule (corner radius, borders) is owned by dms/layout.kdl above.
 // Do not add a window-rule here — it would conflict with layout.kdl on reload.
@@ -40,6 +42,8 @@ input {
         tap
         natural-scroll
     }
+
+    focus-follows-mouse
 }
 
 cursor {
