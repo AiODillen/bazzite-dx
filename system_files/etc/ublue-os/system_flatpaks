@@ -1,5 +1,4 @@
 app.drey.Warp
-com.discordapp.Discord
 com.github.k4zmu2a.spacecadetpinball
 com.github.Matoking.protontricks
 com.github.PintaProject.Pinta
@@ -13,7 +12,6 @@ com.spotify.Client
 com.stremio.Stremio
 com.usebottles.bottles
 de.leopoldluley.Clapgrep
-dev.vencord.Vesktop
 io.github.dvlv.boxbuddyrs
 io.github.fastrizwaan.WineZGUI
 io.github.flattool.Warehouse
