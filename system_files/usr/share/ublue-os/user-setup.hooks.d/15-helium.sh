@@ -2,7 +2,9 @@
 
 source /usr/lib/ublue/setup-services/libsetup.sh
 
-version-script helium-appimage user 1 || exit 1
+# The AppImage existence is the sole guard — no version-script needed.
+# This allows retries if a previous run failed before the download completed.
+[[ -f "${HOME}/Applications/helium.AppImage" ]] && exit 0
 
 set -euo pipefail
 
@@ -67,9 +69,6 @@ x-scheme-handler/chrome=helium.desktop
 text/html=helium.desktop
 application/xhtml+xml=helium.desktop
 MIMEAPPS
-
-# Tell GNOME the default web browser.
-gsettings set org.gnome.desktop.default-applications.web-browser helium.desktop
 
 # Seed topgrade config so ujust update also runs AppImage updates.
 # Only written on first run; the user can extend it freely afterwards.

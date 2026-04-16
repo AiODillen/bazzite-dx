@@ -26,8 +26,21 @@ dnf5 install -y \
     zsh
 
 dnf5 remove -y \
-    mesa-libOpenCL \
-    firefox
+    mesa-libOpenCL
+
+# Remove Firefox RPM if present (Bazzite may ship it as RPM or Flatpak depending on variant)
+dnf5 remove -y firefox 2>/dev/null || true
+
+# Remove Firefox from bazzite-flatpak-manager's install list so it isn't
+# reinstalled as a Flatpak on first boot.
+find /usr/share/ublue-os/bazzite/flatpak/ -name 'install' \
+    -exec sed -i '/^org\.mozilla\.firefox/d' {} \; 2>/dev/null || true
+
+# Block Firefox in GNOME Software / KDE Discover as well.
+if [[ -f /usr/share/ublue-os/flatpak-blocklist ]]; then
+    grep -q 'org.mozilla.firefox' /usr/share/ublue-os/flatpak-blocklist || \
+        echo "deny org.mozilla.firefox/*" >> /usr/share/ublue-os/flatpak-blocklist
+fi
 
 dnf5 --setopt=install_weak_deps=False install -y \
     rocm-hip \
