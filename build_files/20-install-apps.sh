@@ -26,7 +26,8 @@ dnf5 install -y \
     zsh
 
 dnf5 remove -y \
-    mesa-libOpenCL
+    mesa-libOpenCL \
+    firefox
 
 dnf5 --setopt=install_weak_deps=False install -y \
     rocm-hip \
@@ -128,7 +129,6 @@ dnf5 install -y \
 curl -fsSL "https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl" \
     -o /usr/bin/betterdiscordctl
 chmod +x /usr/bin/betterdiscordctl
-
 # Load iptable_nat module for docker-in-docker.
 # See:
 #   - https://github.com/ublue-os/bluefin/issues/2365

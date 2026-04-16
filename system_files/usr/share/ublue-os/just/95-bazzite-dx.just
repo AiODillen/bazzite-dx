@@ -1,5 +1,23 @@
 # vim: set ft=make :
 
+# Update all AppImages integrated with GearLever
+[group('Apps')]
+update-appimages:
+    #!/usr/bin/bash
+    set -euo pipefail
+    echo "Checking for AppImage updates via GearLever..."
+    updates=$(flatpak run it.mijorus.gearlever --list-updates 2>/dev/null || true)
+    if [[ -z "$updates" ]]; then
+        echo "All AppImages are up to date."
+        exit 0
+    fi
+    while IFS= read -r app; do
+        [[ -z "$app" ]] && continue
+        echo "Updating: $app"
+        flatpak run it.mijorus.gearlever --update "$app"
+    done <<< "$updates"
+    echo "Done."
+
 # Configure docker,incus-admin,libvirt, container manager, serial permissions
 [group('System')]
 dx-group:

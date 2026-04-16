@@ -1,0 +1,5 @@
+# bazzite-dx topgrade config
+# Extends the default ujust update flow with AppImage updates via GearLever.
+
+[custom_commands]
+"AppImages (GearLever)" = "ujust update-appimages"
